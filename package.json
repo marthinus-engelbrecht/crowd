@@ -1,0 +1,26 @@
+{
+  "name": "crowd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/gulp": "^3.8.36",
+    "@types/mocha": "^5.2.0",
+    "@types/node": "^8.10.17",
+    "git-guppy": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^4.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^11.8.0",
+    "typescript": "^2.8.3"
+  }
+}
