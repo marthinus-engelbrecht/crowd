@@ -1,18 +1,4 @@
-# Crowd 
-
-Library that extends Javascript collections in succinct and safe way
-
-## Usage 
-
-### Map
-
-````typescript
-import {Map} from 'crowd';
-````
- 
-#### Map.map() 
-
-````typescript
+import {Map} from '../../main';
 
 const starMap = new Map<string, number>();
 starMap.set('one', 1);
@@ -33,13 +19,3 @@ function swapKeyAndValue(value: number, key: string) : {value: string, key: numb
 const newMap: Map<number, string> = starMap.map<number, string>(swapKeyAndValue);
 
 console.log(newMap);
-
-//Map {
-//  1 => 'one',
-//  2 => 'two',
-//  3 => 'three',
-//  4 => 'four',
-//  5 => 'five',
-//  6 => 'six' }
-````
-See [source/examples/map.ts](source/examples/Map/map.ts)
