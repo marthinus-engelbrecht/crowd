@@ -8,7 +8,6 @@ starMap.set('four', 4);
 starMap.set('five', 5);
 starMap.set('six', 6);
 
-
 function swapKeyAndValue(value: number, key: string) : {value: string, key: number} {
     return {
         key: value,
