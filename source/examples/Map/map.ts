@@ -18,3 +18,11 @@ function swapKeyAndValue(value: number, key: string) : {value: string, key: numb
 const newMap: Map<number, string> = starMap.map<number, string>(swapKeyAndValue);
 
 console.log(newMap);
+
+//Map {
+//  1 => 'one',
+//  2 => 'two',
+//  3 => 'three',
+//  4 => 'four',
+//  5 => 'five',
+//  6 => 'six' }
