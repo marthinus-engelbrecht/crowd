@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "build/local/main/index.js",
-  "type": "build/local/main/index.d.ts",
+  "types": "build/local/main/index.d.ts",
   "directories": {
     "test": "tests"
   },

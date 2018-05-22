@@ -6,4 +6,5 @@ Library that extends Javascript collections in succinct and safe way
 
 ### Map
 * [Map.map()](./source/examples/Map/map.ts)
+* [Map.mapToArray()](./source/examples/Map/mapToArray.ts)
 * [Map.filter()](./source/examples/Map/filter.ts)

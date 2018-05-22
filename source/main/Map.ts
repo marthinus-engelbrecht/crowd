@@ -13,6 +13,18 @@ export namespace Crowd {
             return newMap
         };
 
+        mapToArray<T>(mapper: (value?, key?, map?: Map<K, V>) => T) : Array<T> {
+            Map.warnIfNativeFunctionExists(this.mapToArray.name);
+
+            const newArray: Array<T> = [];
+
+            this.forEach((value, key)=> {
+                newArray.push(mapper(value, key));
+            });
+
+            return newArray
+        };
+
         filter(predicate: (value?, key?, map?: Map<K, V>) => boolean) : Map<K,V> {
             Map.warnIfNativeFunctionExists(this.filter.name);
 

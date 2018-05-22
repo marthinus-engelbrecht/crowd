@@ -1,3 +1,3 @@
-import {Map} from "./Map";
+import {Map, Crowd} from "./Map";
 
-export {Map}
+export {Map, Crowd}
