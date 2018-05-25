@@ -11,4 +11,4 @@ overwritten, ever.
 * [Map.filter()](./source/examples/Map/filter.ts)
 
 ### Array
-* [Array.flatten](./source/examples/Array/toMap.ts)
+* [Array.flatten](./source/examples/Array/flatten.ts)
