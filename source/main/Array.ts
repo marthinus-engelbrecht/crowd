@@ -21,6 +21,6 @@ export class Array<T> extends global.Array<T> {
     }
 }
 
-export class RecursiveArrayType<R> extends Array<R | RecursiveArrayType<R>> {
+export class RecursiveArray<R> extends Array<R | RecursiveArray<R>> {
 
 }

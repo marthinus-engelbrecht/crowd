@@ -1,10 +1,10 @@
 import {fakeGlobalFunction, removeFakeNativeTypeMethod} from "../helpers";
 import sinon = require("sinon");
-import {RecursiveArrayType, Array} from "../../../source/main/Array";
+import {RecursiveArray, Array} from "../../../source/main/Array";
 
 UnitUnderTest('Array.flatten()', function () {
     Given('the Array.flatten() function', function () {
-        let startArray: RecursiveArrayType<number> = new Array<any>(...[1, [2, 3], 4, 5, 8, [9, 10, [11, 12, 13], 14, 15], 16]),
+        let startArray: RecursiveArray<number> = new Array<any>(...[1, [2, 3], 4, 5, 8, [9, 10, [11, 12, 13], 14, 15], 16]),
             expectedArray: Array<number> = new Array<number>(...[1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16]),
             actualArray: Array<number>;
 

@@ -1,4 +1,4 @@
 import {Map} from "./Map";
-import {Array} from "./Array";
+import {Array, RecursiveArray} from "./Array";
 
-export {Map, Array}
+export {Map, Array, RecursiveArray}
