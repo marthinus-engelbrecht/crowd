@@ -3,6 +3,10 @@ import {warnIfNativeFunctionExists} from "./helpers";
 export type NativeArray = typeof global.Array;
 
 export class Array<T> extends global.Array<T> {
+    constructor(...items: (T | NativeRecursiveArray<T>)[]) {
+        super(... <Array<T>> items)
+    }
+
     flatten<R extends T>() : Array<R> {
         warnIfNativeFunctionExists('Array', 'flatten');
 
@@ -21,6 +25,12 @@ export class Array<T> extends global.Array<T> {
     }
 }
 
-export class RecursiveArray<R> extends Array<R | RecursiveArray<R>> {
+export class NativeRecursiveArray<R> extends global.Array<R | NativeRecursiveArray<R>>{
 
+}
+
+export class RecursiveArray<R> extends Array<R | RecursiveArray<R>> {
+    constructor(...items:(R | NativeRecursiveArray<R>)[]) {
+        super(... <RecursiveArray<R>> items)
+    }
 }
