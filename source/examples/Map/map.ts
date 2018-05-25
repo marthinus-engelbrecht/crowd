@@ -1,12 +1,12 @@
 import {Map} from '../../main';
 
-const starMap = new Map<string, number>();
-starMap.set('one', 1);
-starMap.set('two', 2);
-starMap.set('three', 3);
-starMap.set('four', 4);
-starMap.set('five', 5);
-starMap.set('six', 6);
+const startMap = new Map<string, number>();
+startMap.set('one', 1);
+startMap.set('two', 2);
+startMap.set('three', 3);
+startMap.set('four', 4);
+startMap.set('five', 5);
+startMap.set('six', 6);
 
 function swapKeyAndValue(value: number, key: string) : {value: string, key: number} {
     return {
@@ -15,7 +15,7 @@ function swapKeyAndValue(value: number, key: string) : {value: string, key: numb
     }
 }
 
-const newMap: Map<number, string> = starMap.map<number, string>(swapKeyAndValue);
+const newMap: Map<number, string> = startMap.map<number, string>(swapKeyAndValue);
 
 console.log(newMap);
 

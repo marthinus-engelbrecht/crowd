@@ -1,5 +1,7 @@
-import {expect, use} from 'chai';
+import chai = require('chai');
 import sinonChai = require('sinon-chai');
-use(sinonChai);
+import 'behavioural-describe-mocha'
 
-(<any>global).expect = expect;
+chai.use(sinonChai);
+
+global.expect = chai.expect;

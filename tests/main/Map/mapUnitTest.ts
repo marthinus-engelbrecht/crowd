@@ -1,29 +1,29 @@
 import {Map} from "../../../source/main";
 import sinon = require("sinon");
-import {initializeStartMap, restoreGlobalMap} from "../helpers";
+import {fakeGlobalFunction, initializeStartMap, removeFakeNativeTypeMethod} from "../helpers";
 
-describe('Unit Under Test: Map.map()', function () {
-    describe('Given the Map.map() function', function () {
+UnitUnderTest('Map.map()', function () {
+    Given('the Map.map() function', function () {
         let startMap: Map<string, number> = initializeStartMap(),
             expectedMap: Map<number, string> = initializeExpectedMap(),
             actualMap: Map<number, string>;
 
-        describe('And the Map.map() does not exist on global.Map', function () {
-            describe('When executed with a mapper function', function () {
-                it('Then it should produce a new Map according the mapping function', function () {
+        And('the Map.map() does not exist on global.Map', function () {
+            When('executed with a mapper function', function () {
+                Then('it should produce a new Map according the mapping function', function () {
                     actualMap = startMap.map<number, string>(swapKeyAndValue);
                     expect(actualMap).to.deep.equal(expectedMap)
                 });
             });
         });
 
-        describe('And the Map.map() function does exist on global.Map', function () {
+        And('the Map.map() function does exist on global.Map', function () {
             beforeEach(function () {
-                fakekMapFunctionOnGlobalMap();
+                fakeGlobalFunction('Map', 'map');
             });
 
-            describe('When executed with a mapper function', function () {
-                let oldLog;
+            When('executed with a mapper function', function () {
+                let oldLog: typeof console.log;
                 const warningMessage = 'Warning: Map.map() exists as part of the native implementation in your environment consider using that.';
 
                 beforeEach(function () {
@@ -32,11 +32,11 @@ describe('Unit Under Test: Map.map()', function () {
                     actualMap = startMap.map<number, string>(swapKeyAndValue);
                 });
 
-                it('Then it should produce a new Map according the mapping function', function () {
+                Then('Then it should produce a new Map according the mapping function', function () {
                     expect(actualMap).to.deep.equal(expectedMap)
                 });
 
-                it('Then it should log a warning message to the console', function () {
+                Then('Then it should log a warning message to the console', function () {
                     expect(console.log).to.have.been.calledWith(warningMessage)
                 });
 
@@ -46,7 +46,7 @@ describe('Unit Under Test: Map.map()', function () {
             });
 
             afterEach(function () {
-               restoreGlobalMap();
+               removeFakeNativeTypeMethod('Map', 'map');
             });
         })
     });
@@ -68,11 +68,5 @@ function swapKeyAndValue(value: number, key: string): { value: string, key: numb
     return {
         key: value,
         value: key
-    }
-}
-
-function fakekMapFunctionOnGlobalMap() {
-    global.Map.prototype['map'] = function <NK, NV>(mapper: (value?, key?, map?: Map<any, any>) => { key: NK, value: NV }): Map<NK, NV> {
-        return undefined;
     }
 }

@@ -1,15 +1,15 @@
 import {Map} from "../../../source/main";
-import {initializeStartMap, restoreGlobalMap} from "../helpers";
+import {fakeGlobalFunction, initializeStartMap, removeFakeNativeTypeMethod} from "../helpers";
 import sinon = require("sinon");
 
-describe('Unit Under Test: Map.filter()', function () {
-    describe('Given the Map.filter() function', function () {
+UnitUnderTest('Map.filter()', function () {
+    Given('the Map.filter() function', function () {
         let startMap: Map<string, number> = initializeStartMap(),
             expectedMap: Map<string, number> = initializeExpectedMap(),
             actualMap: Map<string, number>;
 
-        describe('And the Map.filter() does not exist on global.Map', function () {
-            describe('When executed with a predicate function', function () {
+        And('the Map.filter() does not exist on global.Map', function () {
+            When('executed with a predicate function', function () {
                 it('Then it should produce a Map filtered according to the predicate function', function () {
                     actualMap = startMap.filter(filterOutEvenNumbers);
                     expect(actualMap).to.deep.equal(expectedMap)
@@ -17,13 +17,13 @@ describe('Unit Under Test: Map.filter()', function () {
             });
         });
 
-        describe('And the Map.filter() function does exist on global.Map', function () {
+        And('the Map.filter() function does exist on global.Map', function () {
             beforeEach(function () {
-                fakeFilterFunctionOnGlobalMap();
+                fakeGlobalFunction('Map', 'filter');
             });
 
-            describe('When executed with a predicate function', function () {
-                let oldLog;
+            When('executed with a predicate function', function () {
+                let oldLog: typeof console.log;
                 const warningMessage = 'Warning: Map.filter() exists as part of the native implementation in your environment consider using that.';
 
                 beforeEach(function () {
@@ -32,12 +32,12 @@ describe('Unit Under Test: Map.filter()', function () {
                     actualMap = startMap.filter(filterOutEvenNumbers);
                 });
 
-                it('Then it should produce a Map filtered according to the predicate function', function () {
+                Then('it should produce a Map filtered according to the predicate function', function () {
                     console.log(actualMap, expectedMap);
                     expect(actualMap).to.deep.equal(expectedMap)
                 });
 
-                it('Then it should log a warning message to the console', function () {
+                Then('it should log a warning message to the console', function () {
                     expect(console.log).to.have.been.calledWith(warningMessage)
                 });
 
@@ -47,7 +47,7 @@ describe('Unit Under Test: Map.filter()', function () {
             });
 
             afterEach(function () {
-                restoreGlobalMap();
+                removeFakeNativeTypeMethod('Map', 'filter');
             });
         })
 
@@ -62,12 +62,8 @@ function initializeExpectedMap() {
     return expectedMap;
 }
 
-function fakeFilterFunctionOnGlobalMap() {
-    global.Map.prototype['filter'] = function (predicate: (value?, key?, map?: Map<any, any>) => boolean): Map<any,any> {
-        return undefined;
-    }
-}
 
-function filterOutEvenNumbers(value) : boolean{
+
+function filterOutEvenNumbers(value: number) : boolean{
     return value%2 !== 0;
 }

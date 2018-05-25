@@ -1,4 +1,8 @@
-import {Map} from "../../source/main";
+import {Map, Array} from "../../source/main";
+import Global = NodeJS.Global;
+import {CollectionKeys} from "../../source/main/helpers";
+
+export {removeFakeNativeTypeMethod, initializeStartMap, fakeGlobalFunction}
 
 function initializeStartMap() : Map<string, number>{
     const starMap = new Map<string, number>();
@@ -11,10 +15,13 @@ function initializeStartMap() : Map<string, number>{
     return starMap;
 }
 
-function restoreGlobalMap() {
-    delete global.Map.prototype['map']
-    delete global.Map.prototype['filter']
-    delete global.Map.prototype['mapToArray']
+function removeFakeNativeTypeMethod(NativeType: keyof Global, methodName: CollectionKeys) {
+    delete global[NativeType].prototype[methodName];
 }
 
-export {restoreGlobalMap, initializeStartMap}
+function fakeGlobalFunction(NativeType: keyof Global, methodName: CollectionKeys) {
+    global[NativeType].prototype[methodName] = function (): CollectionKeys {
+        return undefined;
+    }
+}
+

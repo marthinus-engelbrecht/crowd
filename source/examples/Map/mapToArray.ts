@@ -1,18 +1,18 @@
 import {Map} from '../../main';
 
-const starMap = new Map<string, number>();
-starMap.set('one', 1);
-starMap.set('two', 2);
-starMap.set('three', 3);
-starMap.set('four', 4);
-starMap.set('five', 5);
-starMap.set('six', 6);
+const startMap = new Map<string, number>();
+startMap.set('one', 1);
+startMap.set('two', 2);
+startMap.set('three', 3);
+startMap.set('four', 4);
+startMap.set('five', 5);
+startMap.set('six', 6);
 
 function combineKeyValueIntoString(value: number, key: string): string {
     return `The number ${value} can be written as ${key} in english`
 }
 
-const newArray: Array<string> = starMap.mapToArray<string>(combineKeyValueIntoString);
+const newArray: Array<string> = startMap.mapToArray<string>(combineKeyValueIntoString);
 
 console.log(newArray);
 
